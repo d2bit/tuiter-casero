@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  root 'tweets#index'
+
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
+  get '/auth/twitter', as: 'login'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
