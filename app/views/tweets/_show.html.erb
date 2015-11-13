@@ -1,0 +1,10 @@
+<div class='tweet-box'>
+  <%= tweet.text %>
+  <% if tweet.media? %>
+    <% tweet.media.each do |media| %>
+      <div class='thumbnail'>
+        <%= image_tag(media.media_url) %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

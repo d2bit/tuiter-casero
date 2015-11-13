@@ -1,9 +1,3 @@
-<% if current_user.present? %>
-  <div class='btn btn-warning'>
-    <%= link_to 'LOG OUT', logout_path %>
-  </div>
-<% else %>
-  <div class='btn btn-success'>
-    <%= link_to 'TWITTER SIGN IN', login_path %>
-  </div>
+<%- @tweets.each do |tweet| %>
+  <%= render 'show', tweet: tweet %>
 <% end %>
