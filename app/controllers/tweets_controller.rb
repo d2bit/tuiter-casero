@@ -7,6 +7,12 @@ class TweetsController < ApplicationController
   end
 
   def index
+    options = {}
+    page = params[:page].to_i
+    options[:page] = page if page > 1
+    @tweets = @tw_client.tweets(options)
+
+    @paginator = Paginator.new(page, @tw_client.pages_count)
   end
 
   def new

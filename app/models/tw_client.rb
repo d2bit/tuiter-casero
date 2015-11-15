@@ -21,6 +21,10 @@ class TwClient
     @client.user.tweets_count
   end
 
+  def pages_count
+    (tweets_count / 20.0).ceil
+  end
+
   def tweets(options = {})
     @client.user_timeline(options)
   end

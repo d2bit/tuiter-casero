@@ -1,7 +1,9 @@
 <%= render 'shared/navbar_auth' %>
 
 <div class='row'>
-  <% @tw_client.tweets.each do |tweet| %>
+  <% @tweets.each do |tweet| %>
     <%= render 'show', tweet: tweet %>
   <% end %>
 </div>
+
+<%= @paginator.to_html  %>
