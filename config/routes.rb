@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  root 'tweets#index'
+  root 'tweets#homepage'
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get '/auth/twitter', as: 'login'
 
+  get '/timeline', to: 'tweets#index'
   get '/new', to: 'tweets#new'
   post '/create', to: 'tweets#create'
 

@@ -2,6 +2,6 @@
   <%= link_to 'TWEET', new_path %>
 </div>
 
-<% @tweets.each do |tweet| %>
+<% @tw_client.tweets.each do |tweet| %>
   <%= render 'show', tweet: tweet %>
 <% end %>

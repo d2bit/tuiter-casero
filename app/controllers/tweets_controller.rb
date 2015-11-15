@@ -1,39 +1,27 @@
 class TweetsController < ApplicationController
-  before_action :authenticate, only: %i(new create)
+  before_action :authenticate, except: %i(homepage)
+  before_action :set_twitter_client, only: %i(index create)
+
+  def homepage
+    redirect_to timeline_path if current_user.present?
+  end
 
   def index
-    return render '_homepage' unless current_user
-
-    user = tw_client.user
-    @name = user.name
-    @avatar_url = user.profile_image_url
-    @tweets_count = user.tweets_count
-    @tweets = tw_client.user_timeline
   end
 
   def new
   end
 
   def create
-    if params['media'].present?
-      tw_client.update_with_media(params['text'], params['media'])
-    else
-      tw_client.update(params['text'])
-    end
+    @tw_client.post(params['text'], params['media'])
 
-    redirect_to root_path
+    redirect_to timeline_path
   end
 
   private
 
-  def tw_client
-    secrets = Rails.application.secrets
-    @tw_client ||= Twitter::REST::Client.new do |config|
-      config.consumer_key = secrets[:tw_consumer_key]
-      config.consumer_secret = secrets[:tw_consumer_secret]
-      config.access_token = current_user['token']
-      config.access_token_secret = current_user['secret']
-    end
+  def set_twitter_client
+    @tw_client ||= TwClient.new(current_user['token'], current_user['secret'])
   end
 
   def authenticate
