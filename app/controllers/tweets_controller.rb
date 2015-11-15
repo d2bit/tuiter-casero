@@ -15,6 +15,7 @@ class TweetsController < ApplicationController
   def create
     @tw_client.post(params['text'], params['media'])
 
+    flash[:success] = 'New tweet posted! =)'
     redirect_to timeline_path
   end
 
@@ -27,7 +28,7 @@ class TweetsController < ApplicationController
   def authenticate
     return if current_user
 
-    flash[:warning] = 'You should be authenticated!'
+    flash[:danger] = 'You should be authenticated!'
     redirect_to root_path
   end
 end

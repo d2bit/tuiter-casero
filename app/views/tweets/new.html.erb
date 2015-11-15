@@ -1,5 +1,16 @@
+<%= render 'shared/navbar_auth' %>
+
 <%= form_tag create_path, enctype: 'multipart/form-data' do %>
-  <%= text_field_tag :text %>
-  <%= file_field_tag :media %>
-  <%= submit_tag 'Tweet!' %>
+  <div class='form-group'>
+    <%= label_tag :text, 'Text message' %>
+    <%= text_field_tag :text, '', maxlength: 140, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= label_tag :media, 'Attach a media' %>
+    <%= file_field_tag :media %>
+  </div>
+  <div class='form-group'>
+    <%= submit_tag 'Tweet!', class: 'btn btn-lg btn-success' %>
+    <%= link_to 'Cancel', timeline_path, class: 'btn btn-lg btn-danger' %>
+  </div>
 <% end %>

@@ -1,7 +1,7 @@
-<div class='btn btn-sucess'>
-  <%= link_to 'TWEET', new_path %>
-</div>
+<%= render 'shared/navbar_auth' %>
 
-<% @tw_client.tweets.each do |tweet| %>
-  <%= render 'show', tweet: tweet %>
-<% end %>
+<div class='row'>
+  <% @tw_client.tweets.each do |tweet| %>
+    <%= render 'show', tweet: tweet %>
+  <% end %>
+</div>
