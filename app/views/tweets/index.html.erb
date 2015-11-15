@@ -1,3 +1,7 @@
-<%- @tweets.each do |tweet| %>
+<div class='btn btn-sucess'>
+  <%= link_to 'TWEET', new_path %>
+</div>
+
+<% @tweets.each do |tweet| %>
   <%= render 'show', tweet: tweet %>
 <% end %>

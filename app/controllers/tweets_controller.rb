@@ -1,4 +1,6 @@
 class TweetsController < ApplicationController
+  before_action :authenticate, only: %i(new create)
+
   def index
     return render '_homepage' unless current_user
 
@@ -7,6 +9,19 @@ class TweetsController < ApplicationController
     @avatar_url = user.profile_image_url
     @tweets_count = user.tweets_count
     @tweets = tw_client.user_timeline
+  end
+
+  def new
+  end
+
+  def create
+    if params['media'].present?
+      tw_client.update_with_media(params['text'], params['media'])
+    else
+      tw_client.update(params['text'])
+    end
+
+    redirect_to root_path
   end
 
   private
@@ -19,5 +34,12 @@ class TweetsController < ApplicationController
       config.access_token = current_user['token']
       config.access_token_secret = current_user['secret']
     end
+  end
+
+  def authenticate
+    return if current_user
+
+    flash[:warning] = 'You should be authenticated!'
+    redirect_to root_path
   end
 end

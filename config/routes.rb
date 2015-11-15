@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   get '/auth/twitter', as: 'login'
 
+  get '/new', to: 'tweets#new'
+  post '/create', to: 'tweets#create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

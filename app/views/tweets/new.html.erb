@@ -1,0 +1,5 @@
+<%= form_tag create_path, enctype: 'multipart/form-data' do %>
+  <%= text_field_tag :text %>
+  <%= file_field_tag :media %>
+  <%= submit_tag 'Tweet!' %>
+<% end %>
