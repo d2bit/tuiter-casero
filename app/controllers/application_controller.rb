@@ -9,4 +9,9 @@ class ApplicationController < ActionController::Base
   def current_user
     session[:oauth]
   end
+
+  def remove_authentication
+    session.delete :oauth
+    redirect_to root_path
+  end
 end

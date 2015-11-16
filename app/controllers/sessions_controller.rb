@@ -5,8 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete :oauth
-    redirect_to root_path
+    remove_authentication
   end
 
   protected

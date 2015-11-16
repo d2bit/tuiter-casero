@@ -2,6 +2,8 @@ class TweetsController < ApplicationController
   before_action :authenticate, except: %i(homepage)
   before_action :set_twitter_client, only: %i(index create)
 
+  rescue_from Twitter::Error::Unauthorized, with: :remove_authentication
+
   def homepage
     redirect_to timeline_path if current_user.present?
   end
