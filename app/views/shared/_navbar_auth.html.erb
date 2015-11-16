@@ -1,6 +1,12 @@
 <% content_for :brand do %>
-  <%= image_tag @avatar_url, alt: @name %>
-  <%= @name %>
+  <div class='navbar-header'>
+    <div class='navbar-brand navbar-brand-custom'>
+      <%= image_tag @avatar_url, alt: @name %>
+    </div>
+    <div class='navbar-brand'>
+      <%= @name %>
+    </div>
+  </div>
 <% end %>
 
 <% content_for :navbar do %>
