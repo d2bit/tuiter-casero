@@ -13,6 +13,8 @@ class TweetsController < ApplicationController
     page = params[:page].to_i
     options[:page] = page if page > 1
     @tweets = @tw_client.tweets(options)
+    @name = @tw_client.name
+    @avatar_url = @tw_client.avatar_url
 
     @paginator = Paginator.new(page, @tw_client.pages_count)
   end
